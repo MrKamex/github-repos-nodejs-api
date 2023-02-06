@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8081;
 
 const fakten = ["Das hier ist Fakt 1","Das hier ist Fakt 2","Das hier ist Fakt 3","Das hier ist Fakt 4","Das hier ist Fakt 5","Das hier ist Fakt 6"]
 
-let current = fakten.clone();
+let current = fakten.map(y => y);
 
 app.get('/', async (req, res) => {
   const username = req.query.username || 'myogeshchavan97';
@@ -44,7 +44,7 @@ app.get('/getFact', async (req, res) => {
 app.get('/resetFacts', async (req, res) => {
   const username = req.query.username || 'myogeshchavan97';
   try {
-    current = fakten.clone();
+    current = fakten.map(y => y);
     res.send('OK');
   } catch (error) {
     res.status(400).send('Error while getting list of repositories');
