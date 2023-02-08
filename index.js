@@ -29,12 +29,13 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getFact', async (req, res) => {
-  const username = req.query.username || 'myogeshchavan97';
   try {
-	 
-	const index = Math.floor(Math.random() * current.length)
-	const result = current[index];
-		current.splice(index,1);
+	 let result ='Keine Fakten mehr';
+	const index = Math.floor(Math.random() * current.length) - 1
+	 if (current.length) {
+		result = current[index];
+		current.splice(index,1); 
+	 }	 
     res.send(result);
   } catch (error) {
     res.status(400).send('Error while getting list of repositories');
@@ -42,7 +43,6 @@ app.get('/getFact', async (req, res) => {
 });
 
 app.get('/resetFacts', async (req, res) => {
-  const username = req.query.username || 'myogeshchavan97';
   try {
     current = fakten.map(y => y);
     res.send('OK');
