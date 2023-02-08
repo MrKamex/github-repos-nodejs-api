@@ -30,13 +30,18 @@ app.get('/', async (req, res) => {
 
 app.get('/getFact', async (req, res) => {
   try {
-	 let result ='Keine Fakten mehr';
+	  console.log('Getting a fact');
+	 let result;
 	const index = Math.floor(Math.random() * current.length)
+	console.log('index:' + index)
+	console.log(current);
 	 if (current.length) {
 		result = current[index];
 		current.splice(index,1); 
-	 }	 
-    res.send(result);
+	 }
+console.log(current);
+console.log("result: " + result);	 
+    res.send(result || "Keine Fakten mehr!");
   } catch (error) {
     res.status(400).send('Error while getting list of repositories');
   }
