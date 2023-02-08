@@ -31,17 +31,21 @@ app.get('/', async (req, res) => {
 app.get('/getFact', async (req, res) => {
   try {
 	  console.log('Getting a fact');
-	 let result;
-	const index = Math.floor(Math.random() * current.length)
-	console.log('index:' + index)
-	console.log(current);
+	 console.log(current);
 	 if (current.length) {
+		 let result;
+		 const index = Math.floor(Math.random() * current.length)
+		console.log('index:' + index)
+		
 		result = current[index];
 		current.splice(index,1); 
-	 }
-console.log(current);
+		res.send(result);
+		console.log(current);
 console.log("result: " + result);	 
-    res.send(result || "Keine Fakten mehr!");
+	 } else {
+		res.send("Keine Fakten mehr!");	 
+	 }
+	     
   } catch (error) {
     res.status(400).send('Error while getting list of repositories');
   }
@@ -49,6 +53,8 @@ console.log("result: " + result);
 
 app.get('/resetFacts', async (req, res) => {
   try {
+	  console.log("Resetting facts to: ");
+	  console.log(fakten);
     current = fakten.map(y => y);
     res.send('OK');
   } catch (error) {
