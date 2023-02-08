@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
 app.get('/getFact', async (req, res) => {
   try {
 	 let result ='Keine Fakten mehr';
-	const index = Math.floor(Math.random() * current.length) - 1
+	const index = Math.floor(Math.random() * current.length)
 	 if (current.length) {
 		result = current[index];
 		current.splice(index,1); 
